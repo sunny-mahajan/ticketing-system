@@ -1,0 +1,23 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "type": "web",
+      "rootDirectory": "backend",
+      "dockerfile": "backend/Dockerfile",
+      "startCommand": "sh -c 'sleep 10 && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000'",
+      "envVars": {
+        "DB_CONNECTION": "mongodb",
+        "DB_HOST": "${MONGO_URL}",
+        "DB_PORT": "27017"
+      }
+    },
+    {
+      "name": "frontend",
+      "type": "web",
+      "rootDirectory": "frontend",
+      "dockerfile": "frontend/Dockerfile",
+      "startCommand": "npm run dev"
+    }
+  ]
+}
